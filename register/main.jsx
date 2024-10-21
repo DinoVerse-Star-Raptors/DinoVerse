@@ -4,7 +4,7 @@ import "../style.css";
 // import App from "./App";
 
 function App() {
-  return <div className="text-3xl font-bold underline">Hello World!</div>;
+  return <div className={`text-3xl font-bold`}>Hello World!</div>;
 }
 
 const root = createRoot(document.querySelector("#app"));
