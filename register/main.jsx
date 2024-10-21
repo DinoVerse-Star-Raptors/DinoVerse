@@ -1,10 +1,10 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
+import "../style.css";
 // import App from "./App";
 
 function App() {
-  return <div>Hello World!</div>;
+  return <div className="text-3xl font-bold underline">Hello World!</div>;
 }
 
 const root = createRoot(document.querySelector("#app"));
