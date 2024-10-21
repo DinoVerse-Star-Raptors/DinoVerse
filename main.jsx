@@ -1,16 +1,15 @@
 import "./style.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
+// Web/vite.svg
 import { setupCounter } from "./counter.js";
 
-// npx tailwindcss -i ./src/index.css -o ./style.css --watch
-// npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 document.querySelector("#app").innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
+  <div style="">
+    <a href="https://vitejs.dev" target="_blank" style="display: inline-block">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" style="display: inline-block">
       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
     </a>
     <h1>Hello Vite!</h1>
