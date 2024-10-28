@@ -1,8 +1,11 @@
-import React from "react";
+// import React from "react";
+import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import utilStyles from "./register.module.css";
 import viteLogo from "/vite.svg";
+import { Eye, EyeOff, Upload, AlertCircle, X, User } from "lucide-react";
+// import { Alert, AlertDescription } from "@/components/ui/alert";
 
 function Navbar() {
   return (
@@ -39,110 +42,385 @@ function Navbar() {
 }
 
 function Register() {
+  // State management for form inputs and validation
+  const [formData, setFormData] = useState({
+    email: "",
+    fullName: "",
+    password: "",
+    confirmPassword: "",
+    zipCode: "",
+  });
+
+  // State for password visibility toggles
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // State for profile image
+  const [imagePreview, setImagePreview] = useState(null);
+  const [error, setError] = useState("");
+
+  // Handle image upload
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB limit
+        setError("Image size should be less than 5MB");
+        return;
+      }
+
+      if (!file.type.startsWith("image/")) {
+        setError("Please upload an image file");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setError("");
+    }
+  };
+
+  // Remove uploaded image
+  const removeImage = () => {
+    setImagePreview(null);
+  };
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Validate form before submission
+  const validateForm = () => {
+    if (!imagePreview) {
+      setError("Please upload a profile image");
+      return false;
+    }
+
+    if (
+      !formData.email ||
+      !formData.fullName ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !formData.zipCode
+    ) {
+      setError("Please fill in all fields");
+      return false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return false;
+    }
+
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long");
+      return false;
+    }
+
+    // Basic zip code validation (US format)
+    const zipRegex = /^\d{5}(-\d{4})?$/;
+    if (!zipRegex.test(formData.zipCode)) {
+      setError("Please enter a valid ZIP code");
+      return false;
+    }
+
+    return true;
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log("Form submitted:", { ...formData, imagePreview });
+      setError("");
+      // Add your registration logic here
+    }
+  };
   return (
     <section>
-      <div class="min-h-screen bg-center bg-cover bg-no-repeat bg-[url('/bg-desktop.webp')] flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-2xl">
-          <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-blue-500">
-              Delight in the fun with <span>Dino&nbsp;Verse</span>
-            </h2>
-            <p class="mt-2 text-center text-xl text-gray-900 font-semibold">
-              Create a New Account
-            </p>
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          {/* Logo placeholder */}
+          <div className="mx-auto h-12 w-12 border-2 border-blue-500 rounded-full flex justify-center content-center">
+            <img className="w-[26px]" src={`${viteLogo}`} alt="Vite Logo" />
           </div>
-          <form class="mt-8 space-y-6">
-            <div class="rounded-md shadow-sm -space-y-px">
+
+          {/* Page title */}
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            Create your account
+          </h2>
+
+          {/* Secondary text */}
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Already have an account?{" "}
+            <a
+              href="/login/"
+              className="font-medium text-blue-600 hover:text-blue-500"
+            >
+              Sign in
+            </a>
+          </p>
+        </div>
+
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            {/* Error message display */}
+            {/* {error && (
+              <Alert variant="destructive" className="mb-6">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )} */}
+            {/* <form className="space-y-6" onSubmit={handleSubmit}></form> */}
+            <form className="space-y-6 flex flex-col justify-center">
+              {/* Profile Image Upload */}
               <div>
-                <label for="email" class="sr-only">
-                  Email
+                {/* <label className="block text-sm font-medium text-gray-700">
+                  Profile Image
+                </label> */}
+                <div className="mt-1 flex flex-col items-center justify-center">
+                  {/* Profile Image Preview Area */}
+                  <div className="relative mb-4">
+                    {imagePreview ? (
+                      <div className="relative inline-block">
+                        <img
+                          src={imagePreview}
+                          alt="Profile preview"
+                          className="h-32 w-32 rounded-full object-cover ring-4 ring-gray-100"
+                        />
+                        <button
+                          type="button"
+                          onClick={removeImage}
+                          className="absolute -top-2 -right-2 rounded-full bg-red-500 p-1 text-white hover:bg-red-600 shadow-sm"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="h-32 w-32 rounded-full bg-gray-100 flex items-center justify-center ring-4 ring-gray-50">
+                        <User className="h-16 w-16 text-gray-300" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Upload Button Area */}
+                  <div className="flex flex-col items-center text-sm text-gray-600">
+                    <label
+                      htmlFor="profile-image"
+                      className="relative cursor-pointer rounded-md bg-white px-4 py-2 font-medium text-blue-600 hover:text-blue-500 border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors duration-200"
+                    >
+                      <span className="flex items-center space-x-2">
+                        <Upload className="h-4 w-4" />
+                        <span>
+                          {imagePreview
+                            ? "Change photo"
+                            : "Upload Profile photo"}
+                        </span>
+                      </span>
+                      <input
+                        id="profile-image"
+                        name="profile-image"
+                        type="file"
+                        className="sr-only"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                      />
+                    </label>
+                    <p className="mt-2 text-xs text-gray-500">
+                      PNG, JPG up to 5MB
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Rest of the form fields remain the same */}
+              <div>
+                <label
+                  htmlFor="fullName"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  required
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  maxlength="255"
+                  minLength="5"
+                  autoComplete="off"
+                  placeholder="Mark Zuckerberg"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="zipCode"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Post Code
+                </label>
+                <input
+                  id="zipCode"
+                  name="zipCode"
+                  type="text"
+                  required
+                  value={formData.zipCode}
+                  onChange={handleChange}
+                  maxlength="5"
+                  minLength="5"
+                  autoComplete="off"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  placeholder="e.g., 33110"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email address
                 </label>
                 <input
                   id="email"
                   name="email"
                   type="email"
-                  autocomplete="email"
-                  required=""
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm rounded-t-md"
-                  placeholder="Email"
+                  autoComplete="off"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  maxlength="255"
+                  minLength="5"
+                  placeholder="you@example.com"
+                  pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 />
               </div>
+
               <div>
-                <label for="firstName" class="sr-only">
-                  First Name
-                </label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  autocomplete="firstName"
-                  required=""
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder="First Name"
-                />
-              </div>
-              <div>
-                <label for="lastName" class="sr-only">
-                  Last Name
-                </label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  autocomplete="lastName"
-                  required=""
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder="Last Name"
-                />
-              </div>
-              <div>
-                <label for="password" class="sr-only">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="password"
-                  required=""
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
+                <div className="mt-1 relative">
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    maxlength="255"
+                    minLength="8"
+                    autoComplete="off"
+                    placeholder="New password"
+                    className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 bg-transparent hover:border-transparent"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-400" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-400" />
+                    )}
+                  </button>
+                </div>
               </div>
+
               <div>
-                <label for="confirmPassword" class="sr-only">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Confirm Password
                 </label>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  autocomplete="confirmPassword"
-                  required=""
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm rounded-b-md"
-                  placeholder="Confirm Password"
-                />
+                <div className="mt-1 relative">
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    maxlength="255"
+                    minLength="8"
+                    autoComplete="off"
+                    placeholder="Confirm new password"
+                    className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 bg-transparent hover:border-transparent"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-400" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-400" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Create Account
+                </button>
+              </div>
+            </form>
+
+            {/* Social register options */}
+            <div className="mt-6 hidden">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="bg-white px-2 text-gray-500">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                >
+                  Google
+                </button>
+                <button
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                >
+                  GitHub
+                </button>
               </div>
             </div>
-            <div>
-              <button
-                type="submit"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Sign Up
-              </button>
-            </div>
-          </form>
-          <div class="text-center">
-            <p class="mt-2 text-sm text-gray-600">
-              Already have an account?&nbsp;
-              <a
-                class="font-medium text-blue-600 hover:text-blue-500"
-                href="/login"
-              >
-                Sign In
-              </a>
-            </p>
           </div>
         </div>
       </div>
@@ -153,17 +431,17 @@ function Register() {
 function Footer() {
   return (
     <section>
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">About Us</h3>
+            <h3 className="text-xl font-bold mb-4">About Us</h3>
             <p>
               Explore incredible journeys with Toy Shop's exclusive packages and
               handpicked offers.
             </p>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul>
               <li>Destinations</li>
               <li>Special Deals</li>
@@ -171,16 +449,16 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-            <p class="mb-2">
+            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
+            <p className="mb-2">
               Sign up for the latest updates and exclusive deals with Toy Shop
             </p>
             <input
               type="email"
               placeholder="Your email"
-              class="w-full p-2 rounded text-gray-800"
+              className="w-full p-2 rounded text-gray-800"
             />
-            <button class="mt-2 bg-blue-600 text-white py-2 px-4 rounded">
+            <button className="mt-2 bg-blue-600 text-white py-2 px-4 rounded">
               Subscribe
             </button>
           </div>

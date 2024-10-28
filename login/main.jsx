@@ -1,8 +1,11 @@
-import React from "react";
+// import React from "react";
+import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import utilStyles from "./login.module.css";
 import viteLogo from "/vite.svg";
+import { Eye, EyeOff, AlertCircle } from "lucide-react";
+// import { Alert, AlertDescription } from "@/components/ui/alert";
 
 function Navbar() {
   return (
@@ -39,92 +42,206 @@ function Navbar() {
 }
 
 function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your authentication logic here
+    if (!formData.email || !formData.password) {
+      setError("Please fill in all fields");
+      return;
+    }
+    setError("");
+    console.log("Form submitted:", formData);
+  };
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
-    <section>
-      <div class="min-h-screen bg-center bg-cover bg-no-repeat bg-[url('/bg-desktop.webp')] flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-2xl">
-          <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-blue-500">
-              Delight in the fun with <span>Dino&nbsp;Verse</span>
-            </h2>
-            <p class="mt-2 text-center text-xl text-gray-900 font-semibold">
-              Welcome
-            </p>
+    <section className="">
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-start py-12 px-4 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          {/* Logo placeholder */}
+          <div className="mx-auto h-12 w-12 border-2 border-blue-500 rounded-full flex justify-center content-center">
+            <img className="w-[26px]" src={`${viteLogo}`} alt="Vite Logo" />
           </div>
-          <form class="mt-8 space-y-6">
-            <div class="rounded-md shadow-sm -space-y-px">
+
+          {/* Page title */}
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            Sign in to your account
+          </h2>
+
+          {/* Secondary text */}
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Don't have an account?{" "}
+            <a
+              href="/register/"
+              className="font-medium text-blue-600 hover:text-blue-500"
+            >
+              Sign up
+            </a>
+          </p>
+        </div>
+
+        {/* Form container */}
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            {/* Error message display */}
+            {/* {error && (
+              <Alert variant="destructive" className="mb-6">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )} */}
+
+            {/* Login form */}
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Email input group */}
               <div>
-                <label for="email" class="sr-only">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email address
                 </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  required=""
-                  class="appearance-none rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                />
+                <div className="mt-1">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    maxlength="255"
+                    minLength="5"
+                    // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                    className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                    placeholder="you@example.com"
+                    autocomplete="off"
+                  />
+                </div>
               </div>
+
+              {/* Password input group */}
               <div>
-                <label for="password" class="sr-only">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autocomplete="current-password"
-                  required=""
-                  class="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
+                <div className="mt-1 relative">
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    value={formData.password}
+                    onChange={handleChange}
+                    maxlength="255"
+                    minLength="8"
+                    placeholder="password"
+                    autocomplete="off"
+                    className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  />
+                  {/* Toggle password visibility button */}
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 bg-transparent hover:border-transparent"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-400" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-400" />
+                    )}
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label
-                  for="remember-me"
-                  class="ml-2 block text-sm text-gray-900"
+
+              {/* Remember me and Forgot password row */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-900"
+                  >
+                    Remember me,
+                  </label>
+                </div>
+
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-medium text-blue-600 hover:text-blue-500"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
+
+              {/* Submit button */}
+              <div>
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
-                  Remember me
-                </label>
+                  Sign in
+                </button>
               </div>
-              <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-medium text-blue-600 hover:text-blue-500"
+            </form>
+
+            {/* Social login options */}
+            <div className="mt-6 hidden">
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="bg-white px-2 text-gray-500">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {/* Google login button */}
+                <button
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                 >
-                  Forgot Password?
-                </a>
+                  Google
+                </button>
+                {/* GitHub login button */}
+                <button
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                >
+                  GitHub
+                </button>
               </div>
             </div>
-            <div>
-              <button
-                type="submit"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Sign In
-              </button>
-            </div>
-          </form>
-          <div class="text-center">
-            <p class="mt-2 text-sm text-gray-600">
-              Don't have an account?&nbsp;
-              <a
-                class="font-medium text-blue-600 hover:text-blue-500"
-                href="/register"
-              >
-                Create one
-              </a>
-            </p>
           </div>
         </div>
       </div>
@@ -135,17 +252,17 @@ function Login() {
 function Footer() {
   return (
     <section>
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">About Us</h3>
+            <h3 className="text-xl font-bold mb-4">About Us</h3>
             <p>
               Explore incredible journeys with Toy Shop's exclusive packages and
               handpicked offers.
             </p>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul>
               <li>Destinations</li>
               <li>Special Deals</li>
@@ -153,16 +270,16 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Newsletter</h3>
-            <p class="mb-2">
+            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
+            <p className="mb-2">
               Sign up for the latest updates and exclusive deals with Toy Shop
             </p>
             <input
               type="email"
               placeholder="Your email"
-              class="w-full p-2 rounded text-gray-800"
+              className="w-full p-2 rounded text-gray-800"
             />
-            <button class="mt-2 bg-blue-600 text-white py-2 px-4 rounded">
+            <button className="mt-2 bg-blue-600 text-white py-2 px-4 rounded">
               Subscribe
             </button>
           </div>

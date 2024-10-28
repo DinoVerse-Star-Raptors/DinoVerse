@@ -46,8 +46,7 @@ h1 {
   margin: 0 auto;
   padding: 0;
   width: 100%;
-  min-width: 400px;
-  @apply flex justify-center;
+  min-width: 370px;
 }
 
 #app > div {
@@ -57,7 +56,7 @@ h1 {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 200ms;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
