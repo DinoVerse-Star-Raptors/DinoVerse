@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Product Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav
+      class="bg-white border-b-4 border-[#FCA3B9] shadow-md h-[80px] relative z-10"
+    >
+      <div
+        class="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <img
+            src="./src/assets/DinoVerse.png"
+            alt="DinoVerse Logo"
+            class="w-[250px] h-[150px] relative -top-[40px]"
+          />
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex space-x-6 relative -top-[40px] mr-[400px]">
+          <a href="#" class="text-gray-700 hover:text-[#FCA3B9] font-semibold"
+            >Home</a
+          >
+          <a href="#" class="text-gray-700 hover:text-[#FCA3B9] font-semibold"
+            >About</a
+          >
+          <a href="#" class="text-gray-700 hover:text-[#FCA3B9] font-semibold"
+            >Toys</a
+          >
+          <a href="#" class="text-gray-700 hover:text-[#FCA3B9] font-semibold"
+            >Age</a
+          >
+          <a href="#" class="text-gray-700 hover:text-[#FCA3B9] font-semibold"
+            >Contact</a
+          >
+        </div>
+
+        <!-- Search Bar, Cart Icon, and Login Button -->
+        <div class="flex items-center space-x-4 relative -top-[40px]">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              class="w-[250px] px-4 py-1.5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#FCA3B9] focus:border-transparent"
+            />
+          </div>
+
+          <!-- Cart Icon -->
+          <div>
+            <img
+              src="./src/assets/cart-add.svg"
+              alt="Cart Icon"
+              class="w-6 h-6"
+            />
+          </div>
+
+          <!-- Login Button -->
+          <button
+            class="bg-blue-500 text-white px-4 py-2 rounded-full font-semibold"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container mx-auto grid grid-cols-2 gap-10 p-10">
+      <!-- Product Image -->
+      <div class="flex justify-center">
+        <img
+          src="./src/assets/72.Toy Train.H03.2k.png"
+          alt="Assorted Fruit & Vegetable"
+          class="rounded-lg shadow-lg max-w-full h-auto"
+        />
+      </div>
+
+      <!-- Product Details -->
+      <div class="flex flex-col space-y-4">
+        <!-- Age, Reviews, Wishlist -->
+        <div class="flex justify-between items-center">
+          <p class="text-gray-500">Age: 18M+</p>
+          <a href="#" class="text-red-500 hover:text-red-700"
+            >Add to Wishlist</a
+          >
+        </div>
+
+        <!-- Product Name, Price, and Ratings -->
+        <h1 class="text-3xl font-bold text-gray-800">
+        Toy Train
+        </h1>
+        <p class="text-2xl font-semibold text-gray-700">$35.00 USD</p>
+        
+        <div class="flex items-center space-x-2">
+          <img src="/DinoVerse/src/assets/star.png" alt="">
+          <img src="/DinoVerse/src/assets/star.png" alt="">
+          <img src="/DinoVerse/src/assets/star.png" alt="">
+          <img src="/DinoVerse/src/assets/star.png" alt="">
+          <img src="/DinoVerse/src/assets/star.png" alt="">
+          <span
+            class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full font-semibold"
+            >Best Seller</span
+          >
+        </div>
+        <div class="">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Product Description</h3>
+          <p class="text-gray-600">
+              A fun and educational toy for children featuring a colorful train engine and a passenger car. It encourages imaginative play and helps develop motor skills.
+          </p>
+        </div>
+
+        <!-- Best Seller Badge -->
+        
+
+        <!-- Stock Status, Quantity, and Add to Cart Button -->
+        <div class="bg-gray-100 rounded-lg p-6 space-y-4">
+          <p class="text-green-500 font-semibold">In stock</p>
+
+          <!-- Quantity Selector -->
+          <label for="quantity" class="block text-gray-600 font-medium"
+            >Quantity</label
+          >
+          <select
+            id="quantity"
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-300"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+    
+          </select>
+
+          <!-- Buttons -->
+          <button
+            class="w-full bg-blue-600 text-white font-semibold py-3 rounded-full hover:bg-blue-700"
+          >
+            Add to Cart
+          </button>
+          <button
+            class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-full flex items-center justify-center hover:bg-indigo-700"
+          >
+            <span class="mr-2">Buy with</span>
+            <span
+              class="text-white font-semibold bg-blue-500 px-2 py-1 rounded-md"
+              >shop Pay</span
+            >
+          </button>
+
+          <a
+            href="#"
+            class="text-center block text-gray-500 hover:text-gray-700"
+            >More payment options</a
+          >
+          <!-- Additional Info -->
+          <div class="mt-4 space-y-2 text-gray-600">
+            <p class="flex items-center">
+              <span class="text-green-500 font-bold mr-2">✓</span> Eco-friendly
+              materials
+            </p>
+            <p class="flex items-center">
+              <span class="text-green-500 font-bold mr-2">✓</span> Free shipping
+              on orders over $50 within the contiguous USA.
+            </p>
+            <p class="flex items-center space-x-2">
+                <span class="text-green-500 font-bold">✓</span>
+                <span>Secure payment</span>
+            </p>
+             <!-- Factors for Child Development Section -->
+             <div class="mb-10 p-10">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Factors for Child Development
+                </h2>
+                <div class="flex space-x-6 justify-center">
+                  <div class="text-center">
+                    <img
+                      src="./src/assets/icon+ChildDevelopment+no+text_Cause++Effect.png"
+                      alt="Development"
+                      class="mx-auto mb-2"
+                    />
+                    <p class="text-gray-600">Development</p>
+                  </div>
+                  <div class="text-center">
+                    <img
+                      src="./src/assets/icon+ChildDevelopment+no+text_Concentration.png"
+                      alt="Concentration"
+                      class="mx-auto mb-2"
+                    />
+                    <p class="text-gray-600">Concentration</p>
+                  </div>
+                  <div class="text-center">
+                    <img
+                      src="./src/assets/icon+ChildDevelopment+no+text_Imagination.png"
+                      alt="Imagination"
+                      class="mx-auto mb-2"
+                    />
+                    <p class="text-gray-600">Imagination</p>
+                  </div>
+                  <div class="text-center">
+                    <img
+                      src="./src/assets/icon+ChildDevelopment+no+text_Creative.png"
+                      alt="Creative"
+                      class="mx-auto mb-2"
+                    />
+                    <p class="text-gray-600">Creative</p>
+                  </div>
+                  <div class="text-center">
+                    <img
+                      src="./src/assets/icon+ChildDevelopment+no+text_Coordination.png"
+                      alt="Coordination"
+                      class="mx-auto mb-2"
+                    />
+                    <p class="text-gray-600">Coordination</p>
+                  </div>
+                  </div>
+                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
