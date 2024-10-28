@@ -109,7 +109,7 @@ function Login() {
             {/* Login form */}
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Email input group */}
-              <div>
+              {/* <div>
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
@@ -131,6 +131,31 @@ function Login() {
                     className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                     placeholder="you@example.com"
                     autocomplete="off"
+                  />
+                </div>
+              </div> */}
+
+              <div>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Username
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    required
+                    value={formData.username}
+                    onChange={handleChange}
+                    maxlength="32"
+                    minLength="3"
+                    className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                    placeholder="username"
+                    autocomplete="off"
+                    pattern="^[a-z][a-z0-9_-]{3,32}"
                   />
                 </div>
               </div>
@@ -306,4 +331,9 @@ function Layout() {
 }
 
 const root = createRoot(document.querySelector("#app"));
-root && root.render(<Layout />);
+root &&
+  root.render(
+    <React.StrictMode>
+      <Layout />
+    </React.StrictMode>
+  );

@@ -240,7 +240,6 @@ function Register() {
                   </div>
                 </div>
               </div>
-
               {/* Rest of the form fields remain the same */}
               <div>
                 <label
@@ -263,8 +262,7 @@ function Register() {
                   className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 />
               </div>
-
-              <div>
+              {/* <div>
                 <label
                   htmlFor="zipCode"
                   className="block text-sm font-medium text-gray-700"
@@ -284,8 +282,7 @@ function Register() {
                   className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   placeholder="e.g., 33110"
                 />
-              </div>
-
+              </div> */}
               <div>
                 <label
                   htmlFor="email"
@@ -308,7 +305,29 @@ function Register() {
                   className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                 />
               </div>
-
+              <div>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Username
+                </label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  required
+                  value={formData.username}
+                  onChange={handleChange}
+                  maxlength="31"
+                  minLength="3"
+                  autoComplete="off"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+                  placeholder="username"
+                  pattern="^[a-z][a-z0-9_-]{3,32}"
+                />
+              </div>
+              {/* [A-Za-z0-9_-]{(3, 16)} */}
               <div>
                 <label
                   htmlFor="password"
@@ -345,7 +364,6 @@ function Register() {
                   </button>
                 </div>
               </div>
-
               <div>
                 <label
                   htmlFor="confirmPassword"
@@ -382,7 +400,6 @@ function Register() {
                   </button>
                 </div>
               </div>
-
               <div>
                 <button
                   type="submit"
@@ -485,4 +502,9 @@ function Layout() {
 }
 
 const root = createRoot(document.querySelector("#app"));
-root && root.render(<Layout />);
+root &&
+  root.render(
+    <React.StrictMode>
+      <Layout />
+    </React.StrictMode>
+  );
