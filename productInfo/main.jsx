@@ -1,13 +1,45 @@
+// import React from "react";
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
-import "../style.css";
-// import utilStyles from "./login.module.css";
+import "./style.css";
+import utilStyles from "./login.module.css";
 import viteLogo from "/vite.svg";
-import { Eye, EyeOff } from "lucide-react";
-import SimpleNavbar from "../src/components/ui/SimpleNavbar";
-import SimpleFooter from "../src/components/ui/SimpleFooter";
-// import { Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, AlertCircle } from "lucide-react";
 // import { Alert, AlertDescription } from "@/components/ui/alert";
+
+function Navbar() {
+  return (
+    <nav
+      className={`bg-white shadow-md relative z-50 w-[100%] ${utilStyles.nav}`}
+    >
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0">
+            <a className="flex items-center" href="/">
+              <img className="w-[24px]" src={`${viteLogo}`} alt="Vite Logo" />
+            </a>
+          </div>
+          <div className="flex items-center">
+            <div className="flex items-center space-x-4">
+              <a
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out"
+                href="/login/"
+              >
+                Log In
+              </a>
+              <a
+                className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl text-white hover:bg-indigo-700 px-3 py-2 text-sm font-medium transition duration-150 ease-in-out"
+                href="/register/"
+              >
+                Register
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -242,17 +274,57 @@ function Login() {
   );
 }
 
+function Footer() {
+  return (
+    <section>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-xl font-bold mb-4">About Us</h3>
+            <p>
+              Explore incredible journeys with Toy Shop's exclusive packages and
+              handpicked offers.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul>
+              <li>Destinations</li>
+              <li>Special Deals</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">Newsletter</h3>
+            <p className="mb-2">
+              Sign up for the latest updates and exclusive deals with Toy Shop
+            </p>
+            <input
+              type="email"
+              placeholder="Your email"
+              className="w-full p-2 rounded text-gray-800"
+            />
+            <button className="mt-2 bg-blue-600 text-white py-2 px-4 rounded">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Layout() {
   return (
     <>
       <header>
-        <SimpleNavbar />
+        <Navbar />
       </header>
       <main className="min-h-svh mt-16">
         <Login />
       </main>
       <footer className="bg-gray-800 text-white py-8">
-        <SimpleFooter />
+        <Footer />
       </footer>
     </>
   );

@@ -1,0 +1,18 @@
+project-root
+├── public
+│   ├── index.html
+│   └── favicon.ico
+├── src
+│   ├── components
+│   │   ├── ui
+│   │   │   ├── Button.jsx
+│   │   │   └── Input.jsx
+│   │   └── Layout.jsx
+│   │   └── Page.jsx
+│   ├── pages
+│   │   ├── index.jsx
+│   │   └── about.jsx
+│   ├── styles
+│   │   ├── global.css
+│   │   └── theme.css
+│   ├── vite.config.js
