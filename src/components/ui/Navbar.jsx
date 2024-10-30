@@ -47,7 +47,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-4 grow justify-end">
-          <div className="relative mx-[80px] min-w-[438px] w-full">
+          <div className="relative mx-[80px] min-w-[438px] grow">
             <input
               type="search"
               placeholder="Search"
