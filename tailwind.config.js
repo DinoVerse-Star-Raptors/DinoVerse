@@ -5,6 +5,7 @@ export default {
     "./main.jsx",
     "./login/**/*.{js,ts,jsx,tsx,html}",
     "./register/**/*.{js,ts,jsx,tsx,html}",
+    "./productinfo/**/*.{js,ts,jsx,tsx,html}",
     "./src/**/*.{js,ts,jsx,tsx,html}",
     "./pages/**/*.{js,ts,jsx,tsx,html}",
     "./components/**/*.{js,ts,jsx,tsx,html}",

@@ -10,8 +10,11 @@ import logo from "/DinoVerse-logo.png";
 export default function Navbar() {
   return (
     <header className="flex justify-center bg-white shadow-sm">
-      <nav className="flex items-center justify-start px-4 py-2 w-full max-w-[1440px]">
-        <a href="/" className="flex items-center space-x-2 min-w-min-[211px]">
+      <nav className="flex items-center justify-between px-4 py-2 w-full max-w-[1440px]">
+        <a
+          href="/"
+          className="flex items-center space-x-2 min-w-[211px] grow-0"
+        >
           <img src={logo} alt="Logo" width={211} height={49} />
           {/* <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +31,7 @@ export default function Navbar() {
         <span className="text-xl font-bold text-purple-600">DinoVerse</span>*/}
         </a>
 
-        <div className="hidden md:flex w-full max-w-[360px] justify-evenly min-h-[19px] items-center grow">
+        <div className="hidden md:flex w-full min-w-[360] max-w-[360px] min-h-[19px] items-center gap-x-8 mx-8">
           <a href="/" className="text-black hover:text-gray-900">
             Home
           </a>
@@ -45,9 +48,9 @@ export default function Navbar() {
             Contact
           </a>
         </div>
-
-        <div className="flex items-center space-x-4 grow justify-end">
-          <div className="relative mx-[80px] min-w-[438px] grow">
+        <div className="flex grow">&nbsp;</div>
+        <div className="flex items-center space-x-4 justify-end">
+          <div className="relative mx-[80px]">
             <input
               type="search"
               placeholder="Search"
