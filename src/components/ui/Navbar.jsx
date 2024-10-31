@@ -5,33 +5,21 @@ import React from "react";
 import { Search, ShoppingCart } from "lucide-react";
 // import "./style.css";
 import logo from "/DinoVerse-logo.png";
+import uiStyle from "./ui.module.css";
 // Tell webpack this JS file uses this image
 
 export default function Navbar() {
   return (
-    <header className="flex justify-center bg-white shadow-sm">
+    <header className="flex justify-center bg-white shadow-sm max-h-16">
       <nav className="flex items-center justify-between px-4 py-2 w-full max-w-[1440px]">
         <a
           href="/"
-          className="flex items-center space-x-2 min-w-[211px] grow-0"
+          className="flex items-center space-x-2 min-w-[240px] grow-0"
         >
-          <img src={logo} alt="Logo" width={211} height={49} />
-          {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-6 h-6 text-purple-600"
-        >
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span className="text-xl font-bold text-purple-600">DinoVerse</span>*/}
+          <img src={logo} alt="Logo" width={211} height={49} className="max-h-[49px]" />
         </a>
 
-        <div className="hidden md:flex w-full min-w-[360] max-w-[360px] min-h-[19px] items-center gap-x-8 mx-8">
+        <div className="hidden lg:flex w-full min-w-[360px] max-w-[360px] min-h-[19px] items-center justify-between">
           <a href="/" className="text-black hover:text-gray-900">
             Home
           </a>
@@ -48,20 +36,24 @@ export default function Navbar() {
             Contact
           </a>
         </div>
-        <div className="flex grow">&nbsp;</div>
-        <div className="flex items-center space-x-4 justify-end">
-          <div className="relative mx-[80px]">
+        <div className="hidden lg:flex lg:grow">&nbsp;</div>
+        <div
+          className={`flex items-center space-x-4 justify-end ${uiStyle.nav_right}`}
+        >
+          <div
+            className={`${uiStyle.search_section}`}
+          >
             <input
               type="search"
               placeholder="Search"
-              className="pl-10 pr-4 py-1 border-2 min-w-[260px] w-full"
+              className="pl-10 pr-4 py-1 border-2 min-w-[150px] w-full"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
           <ShoppingCart className="text-gray-600 w-6 h-6" />
           <button
             variant="default"
-            className="bg-blue-500 hover:bg-blue-600 text-white text-[1rem] leading-[1rem] rounded-[20px] w-[70px] h-[40px] flex justify-center content-center"
+            className="bg-blue-500 hover:bg-blue-600 text-white text-[1rem] leading-[1rem] rounded-[20px] w-[70px] h-[40px]"
           >
             Login
           </button>

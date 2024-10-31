@@ -4,7 +4,6 @@ import "../style.css";
 import utilStyles from "./productinfo.module.css";
 import Navbar from "../src/components/ui/Navbar";
 import ProductImage from "/assets/product-image.png";
-// import viteLogo from "/vite.svg";
 
 function Layout() {
   return (
