@@ -2,7 +2,7 @@ import React from "react";
 // import a from "next/a";
 // import { Input } from "@/components/ui/input";
 // import { Button } from "@/components/ui/button";
-import { Search, ShoppingCart } from "lucide-react";
+import { Search, ShoppingCart, SquareMenu, Menu } from "lucide-react";
 // import "./style.css";
 import logo from "/DinoVerse-logo.png";
 import uiStyle from "./ui.module.css";
@@ -50,7 +50,7 @@ export default function Navbar() {
             <input
               type="search"
               placeholder="Search"
-              className="pl-10 pr-4 py-1 border-2 min-w-[150px] w-full"
+              className="pl-10 pr-4 py-1 border-2 min-w-[125px] w-full"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
@@ -61,6 +61,7 @@ export default function Navbar() {
           >
             Login
           </button>
+          <Menu className="text-gray-600 w-[36px] min-w-[36px] h-[36px] min-h-[36px] lg:hidden" />
         </div>
       </nav>
     </header>
