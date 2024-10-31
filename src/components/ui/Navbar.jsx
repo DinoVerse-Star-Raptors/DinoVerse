@@ -16,7 +16,13 @@ export default function Navbar() {
           href="/"
           className="flex items-center space-x-2 min-w-[240px] grow-0"
         >
-          <img src={logo} alt="Logo" width={211} height={49} className="max-h-[49px]" />
+          <img
+            src={logo}
+            alt="Logo"
+            width={211}
+            height={49}
+            className="max-h-[49px]"
+          />
         </a>
 
         <div className="hidden lg:flex w-full min-w-[360px] max-w-[360px] min-h-[19px] items-center justify-between">
@@ -40,9 +46,7 @@ export default function Navbar() {
         <div
           className={`flex items-center space-x-4 justify-end ${uiStyle.nav_right}`}
         >
-          <div
-            className={`${uiStyle.search_section}`}
-          >
+          <div className={`${uiStyle.search_section}`}>
             <input
               type="search"
               placeholder="Search"
@@ -50,15 +54,15 @@ export default function Navbar() {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           </div>
-          <ShoppingCart className="text-gray-600 w-6 h-6" />
+          <ShoppingCart className="text-gray-600 w-[24px] min-w-[24px] h-[24px] min-h-[24px]" />
           <button
             variant="default"
-            className="bg-blue-500 hover:bg-blue-600 text-white text-[1rem] leading-[1rem] rounded-[20px] w-[70px] h-[40px]"
+            className="bg-blue-500 hover:bg-blue-600 text-white text-[1rem] leading-[1rem] rounded-[20px] w-[70px] min-w-[70px] h-[40px]"
           >
             Login
           </button>
         </div>
-      </nav>{" "}
+      </nav>
     </header>
   );
 }

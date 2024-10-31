@@ -29,13 +29,14 @@
   }
 
   .search_section {
-    @apply hidden md:flex relative mr-[20px] lg:mr-[80px];
-    /* @apply max-w-[300px] md:max-w-[400px] lg:max-w-[500px]; */
-    width: calc(100% - 290px);
+    @apply hidden md:flex relative m-[20px] my-0;
+    @apply lg:m-[80px] lg:my-0;
+    width: calc(100%);
+    max-width: calc(100% - 290px);
   }
   .nav_right {
     @apply w-full;
-    max-width: calc(100% - 500px);
-    @apply md:max-w-screen-sm;
+    max-width: calc(100% - 600px);
+    @apply md:max-w-screen-sm lg:max-w-screen-md;
   }
 }
