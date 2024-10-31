@@ -734,6 +734,11 @@ button:focus,
   z-index: 50;
 }
 
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 .mx-\[80px\] {
   margin-left: 80px;
   margin-right: 80px;
@@ -742,11 +747,6 @@ button:focus,
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 
 .mb-10 {
@@ -779,6 +779,10 @@ button:focus,
 
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .mt-16 {
@@ -953,12 +957,12 @@ button:focus,
   flex-shrink: 0;
 }
 
-.grow-0 {
-  flex-grow: 0;
-}
-
 .grow {
   flex-grow: 1;
+}
+
+.grow-0 {
+  flex-grow: 0;
 }
 
 .-translate-y-1\/2 {

@@ -13,7 +13,7 @@ function Layout() {
       <main className="min-h-svh mt-16 py-2 w-full max-w-[1440px]">
         <div className="container mx-auto grid grid-cols-2 gap-10 p-10">
           {/* Product Image */}
-          <div className="flex justify-center w-full max-w-[600px] max-h-[400px]">
+          <div className="flex justify-center w-full max-w-[800px] max-h-[500px]">
             <img
               src={ProductImage}
               alt="Assorted Fruit & Vegetable"
@@ -44,8 +44,8 @@ function Layout() {
                   Best Seller
                 </span>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <div className="mt-10">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 ">
                   Product Description
                 </h3>
                 <p className="text-gray-600">
@@ -110,7 +110,7 @@ function Layout() {
                 </p>
                 <p className="flex items-center">
                   <span className="text-green-500 font-bold mr-2">✓</span> Free
-                  shipping on orders over $50 within the contiguous USA.
+                  shipping on orders over $50
                 </p>
                 <p className="flex items-center space-x-2">
                   <span className="text-green-500 font-bold">✓</span>
@@ -124,11 +124,11 @@ function Layout() {
                   <div className="flex space-x-6 justify-center">
                     <div className="text-center">
                       <img
-                        src="/assets/icon+ChildDevelopment+no+text_Cause++Effect.png"
-                        alt="Development"
+                        src="/assets/icon+ChildDevelopment+no+text_Gross+Motor.png"
+                        alt="Motor"
                         className={`mx-auto mb-2 ${utilStyles.Child_Image}`}
                       />
-                      <p className="text-gray-600">Development</p>
+                      <p className="text-gray-600">Motor</p>
                     </div>
                     <div className="text-center">
                       <img
