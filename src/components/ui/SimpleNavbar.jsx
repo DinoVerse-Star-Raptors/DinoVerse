@@ -11,7 +11,9 @@ function SimpleNavbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <a className="flex items-center" href="/">
-              <img className="w-[24px]" src={viteLogo} alt="Vite Logo" />
+              <span class="text-black w-[107px] font-roboto font-medium text-[24px] opacity-100 text-left">
+                Dinoverse
+              </span>
             </a>
           </div>
           <div className="flex items-center">
