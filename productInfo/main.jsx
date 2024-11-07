@@ -10,14 +10,14 @@ function Layout() {
   return (
     <>
       <Navbar />
-      <main className="min-h-svh mt-16 py-2 w-full max-w-[1440px]">
+      <main className="min-h-svh mt-16 py-2 w-full max-w-[1440px] ml-[200px]">
         <div className="container mx-auto grid grid-cols-2 gap-10 p-10">
           {/* Product Image */}
           <div className="flex justify-center w-full max-w-[800px] max-h-[500px]">
             <img
               src={ProductImage}
               alt="Assorted Fruit & Vegetable"
-              className={`rounded-lg shadow-lg h-auto ${utilStyles.Product_Image}`}
+              className={`rounded-lg shadow-lg h-auto hover:scale-125 ${utilStyles.Product_Image}`}
             />
           </div>
 
@@ -34,14 +34,14 @@ function Layout() {
               {/* <!-- Product Name, Price, and Ratings --> */}
               <h1 className="text-3xl font-bold text-gray-800">Toy Train</h1>
               <p className="text-2xl font-semibold text-gray-700">$35.00 USD</p>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mt-2">
                 <img src="/assets/star.png" alt="" />
                 <img src="/assets/star.png" alt="" />
                 <img src="/assets/star.png" alt="" />
                 <img src="/assets/star.png" alt="" />
                 <img src="/assets/star.png" alt="" />
                 <span className="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full font-semibold">
-                  Best Seller
+                  Recommend
                 </span>
               </div>
               <div className="mt-10">
@@ -165,6 +165,92 @@ function Layout() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-8 bg-white">
+          <div className="text-2xl font-bold mb-4">What Parents Are Saying</div>
+
+          <div className="flex items-center mb-4">
+            <div className="flex items-center">
+              {/* Stars */}
+              <span className="text-yellow-500 text-2xl">&#9733;</span>
+              <span className="text-yellow-500 text-2xl">&#9733;</span>
+              <span className="text-yellow-500 text-2xl">&#9733;</span>
+              <span className="text-yellow-500 text-2xl">&#9733;</span>
+              <span className="text-gray-300 text-2xl">&#9733;</span>
+            </div>
+            <span className="ml-2 text-gray-700 font-semibold">
+              4.5 out of 5 | 2 reviews
+            </span>
+          </div>
+
+          {/* Star Distribution */}
+          <div className="space-y-1 mb-6">
+            {[5, 4, 3, 2, 1].map((star) => (
+              <div key={star} className="flex items-center">
+                <span className="text-gray-700 font-medium w-16">
+                  {star} Star
+                </span>
+                <div className="bg-gray-200 rounded-full w-full h-2 mx-2">
+                  <div
+                    className={`bg-yellow-500 h-2 rounded-full`}
+                    style={{
+                      width: star === 5 ? "70%" : star === 4 ? "50%" : "0%",
+                    }}
+                  ></div>
+                </div>
+                <span className="text-gray-700">
+                  ({star === 5 || star === 4 ? 1 : 0})
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Reviews Header */}
+          <div className="text-xl font-semibold mb-4 border-b border-yellow-400 pb-2">
+            Review (2)
+          </div>
+
+          {/* Review Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Review Card 1 */}
+            <div className="p-4 bg-gray-50 rounded-lg shadow">
+              <div className="flex items-center mb-2">
+                <span className="text-yellow-500">
+                  &#9733;&#9733;&#9733;&#9733;
+                </span>
+                <span className="text-gray-400">&#9733;</span>
+                <span className="text-gray-600 ml-2 text-sm">03/10/2023</span>
+              </div>
+              <div className="font-semibold">Erica</div>
+              <div className="text-sm text-gray-700">Happy</div>
+              <p className="text-gray-600 text-sm mt-2">
+                My daughter loves this set! The only problem was the Velcro on
+                the carrot was already coming unglued right out of the box. I
+                added some craft glue and it’s been fine so far! Definitely
+                recommend!
+              </p>
+            </div>
+
+            {/* Review Card 2 */}
+            <div className="p-4 bg-gray-50 rounded-lg shadow">
+              <div className="flex items-center mb-2">
+                <span className="text-yellow-500">
+                  &#9733;&#9733;&#9733;&#9733;&#9733;
+                </span>
+                <span className="text-gray-600 ml-2 text-sm">04/09/2023</span>
+              </div>
+              <div className="flex items-center">
+                <div className="font-semibold">Raelyn</div>
+                <span className="ml-1 text-green-500">&#10003;</span>
+              </div>
+              <div className="text-sm text-gray-700">
+                Assorted Fruit & Vegetable
+              </div>
+              <p className="text-gray-600 text-sm mt-2">
+                Very impressed with the great quality of the items I bought.
+              </p>
             </div>
           </div>
         </div>
