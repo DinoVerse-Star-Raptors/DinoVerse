@@ -1,12 +1,7 @@
 import React from "react";
-// import a from "next/a";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
 import { Search, ShoppingCart, SquareMenu, Menu } from "lucide-react";
-// import "./style.css";
 import logo from "/DinoVerse-logo.png";
 import uiStyle from "./ui.module.css";
-// Tell webpack this JS file uses this image
 
 export default function Navbar() {
   return (
@@ -42,10 +37,8 @@ export default function Navbar() {
             Contact
           </a>
         </div>
-        <div className="hidden lg:flex lg:grow">&nbsp;</div>
-        <div
-          className={`flex items-center space-x-4 justify-end ${uiStyle.nav_right}`}
-        >
+        <div className="hidden lg:flex lg:grow" />
+        <div className={`${uiStyle.nav_right}`}>
           <div className={`${uiStyle.search_section}`}>
             <input
               type="search"

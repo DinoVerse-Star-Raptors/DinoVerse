@@ -4,9 +4,6 @@
 
 @layer components {
   .container {
-    /* max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem; */
     margin: 0;
     padding: 0;
   }
@@ -34,8 +31,9 @@
     width: calc(100%);
     max-width: calc(100% - 290px);
   }
+
   .nav_right {
-    @apply w-full;
+    @apply w-full flex items-center space-x-4 justify-end;
     max-width: calc(100% - 600px);
     @apply md:max-w-screen-sm lg:max-w-screen-md;
   }
