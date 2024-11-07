@@ -226,10 +226,11 @@ function Layout() {
               <div className="font-semibold">Erica</div>
               <div className="text-sm text-gray-700">Happy</div>
               <p className="text-gray-600 text-sm mt-2">
-                My daughter loves this set! The only problem was the Velcro on
-                the carrot was already coming unglued right out of the box. I
-                added some craft glue and it’s been fine so far! Definitely
-                recommend!
+                My son enjoys playing with the train, but I have to say, the
+                tracks don’t always stay connected when he pushes the train
+                around too quickly. It can be a bit frustrating. It’s a good
+                toy, but it might be better suited for gentle play or older
+                kids.
               </p>
             </div>
 
@@ -245,11 +246,13 @@ function Layout() {
                 <div className="font-semibold">Raelyn</div>
                 <span className="ml-1 text-green-500">&#10003;</span>
               </div>
-              <div className="text-sm text-gray-700">
-                Assorted Fruit & Vegetable
-              </div>
+              <div className="text-sm text-gray-700">Wonderful Gift Idea</div>
               <p className="text-gray-600 text-sm mt-2">
-                Very impressed with the great quality of the items I bought.
+                Bought this as a birthday gift for my nephew, and he loves it!
+                The train set is bright and engaging, and it came in nice
+                packaging, so it felt very special. It’s also safe, with rounded
+                edges on the tracks and no small parts, which I appreciate.
+                Great purchase!
               </p>
             </div>
           </div>
